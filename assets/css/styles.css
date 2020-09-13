@@ -6,7 +6,7 @@ body {
   padding-top: 10vh 0 10vh;
 }
 
-.sent{display:none;color:green;text-align: center;padding-bottom: 1vh;}
+#ok{color:green;text-align: center;padding-bottom: 1vh;}
 
 footer {
   flex-shrink: 0;
@@ -22,6 +22,7 @@ footer {
 }
 
 .hide {display:none;}
+.show {display:block;}
 
 .error {color:red;}
 

@@ -1,4 +1,3 @@
-const sent = document.querySelector(".sent");
 const form = document.querySelector("#contactForm");
 const name = document.querySelector("#name");
 const nameError = document.querySelector("#inputErrorName");
@@ -24,11 +23,13 @@ function nameCheck() {
   //validate name
   const nameValue = name.value;
   if (checkExsist(nameValue)) {
-    nameError.style.display = "none";
+    nameError.classList.remove("block");
+    nameError.classList.add("hide");
     // console.log("Name: " + nameValue);
     return true;
   } else {
-    nameError.style.display = "block";
+    nameError.classList.remove("hide");
+    nameError.classList.add("block");
   }
 }
 
@@ -36,11 +37,13 @@ function subjectCheck() {
   //validate subject
   const subjectValue = subject.value;
   if (checkInputLength(subjectValue, 10)) {
-    subjectError.style.display = "none";
+    subjectError.classList.remove("block");
+    subjectError.classList.add("hide");
     // console.log("Subject: " + subjectValue);
     return true;
   } else {
-    subjectError.style.display = "block";
+    subjectError.classList.remove("hide");
+    subjectError.classList.add("block");
   }
 }
 
@@ -48,11 +51,13 @@ function emailCheck() {
   //validate email
   const emailValue = email.value;
   if (validateEmail(emailValue)) {
-    emailError.style.display = "none";
+    emailError.classList.remove("block");
+    emailError.classList.add("hide");
     // console.log("Email: " + emailValue);
     return true;
   } else {
-    emailError.style.display = "block";
+    emailError.classList.remove("hide");
+    emailError.classList.add("block");
   }
 }
 
@@ -60,11 +65,14 @@ function addressCheck() {
   //validate address
   const addressValue = address.value;
   if (checkInputLength(addressValue, 25)) {
-    addressError.style.display = "none";
+    addressError.classList.add("hide");
+    addressError.classList.remove("block");
     // console.log("Address:" + addressValue);
     return true;
   } else {
-    addressError.style.display = "block";
+    addressError.classList.remove("hide");
+    addressError.classList.add("block");
+
   }
 }
 
