@@ -21,6 +21,8 @@ footer {
   height: 4.5rem;
 }
 
+.hide {display:none;}
+
 .error {color:red;}
 
 .loader {
