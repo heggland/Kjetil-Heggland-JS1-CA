@@ -47,7 +47,7 @@ function subjectCheck() {
 function emailCheck() {
   //validate email
   const emailValue = email.value;
-  if (validateEmail(emailValue) === true) {
+  if (validateEmail(emailValue)) {
     emailError.style.display = "none";
     // console.log("Email: " + emailValue);
     return true;
