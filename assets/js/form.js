@@ -1,3 +1,4 @@
+const ok = document.querySelector("#ok");
 const form = document.querySelector("#contactForm");
 const name = document.querySelector("#name");
 const nameError = document.querySelector("#inputErrorName");
@@ -8,58 +9,50 @@ const emailError = document.querySelector("#inputErrorEmail");
 const address = document.querySelector("#address");
 const addressError = document.querySelector("#inputErrorAddress");
 
+
 // validation of form input
 function validateForm() {
+event.preventDefault();
 
-  event.preventDefault();
-  // each input field has its own function
-  nameCheck();
-  subjectCheck();
-  emailCheck();
-  addressCheck();
+  check(name, nameError);
+  validate(subject, subjectError, 10);
+  emailValidate(email, emailError);
+  validate(address, addressError, 25);
 }
 
-function nameCheck() {
-  //validate name
-  const nameValue = name.value;
-  if (checkExsist(nameValue)) {
-    hide(nameError);
+function check(value, error) {
+  //check if name is inputed on form
+  const textValue = (value).value;
+  if (checkExsist(textValue)) {
+    hide(error);
+    // console.log(textValue);
     return true;
   } else {
-    show(nameError);
+    show(error);
   }
 }
 
-function subjectCheck() {
-  //validate subject
-  const subjectValue = subject.value;
-  if (checkInputLength(subjectValue, 10)) {
-    hide(subjectError);
+function validate(value, error, count) {
+  //validate subject on form
+  const textValue = (value).value;
+  if (checkInputLength(textValue, (count))) {
+    hide(error);
+    // console.log(textValue);
     return true;
   } else {
-    show(subjectError);
+    show(error);
   }
 }
 
-function emailCheck() {
-  //validate email
-  const emailValue = email.value;
-  if (validateEmail(emailValue)) {
-    hide(emailError);
+function emailValidate(value, error) {
+  //validate email on form
+  const textValue = (value).value;
+  if (validateEmail(textValue)) {
+    hide(error);
+    // console.log(textValue);
     return true;
   } else {
-    show(emailError);
-  }
-}
-
-function addressCheck() {
-  //validate address
-  const addressValue = address.value;
-  if (checkInputLength(addressValue, 25)) {
-    hide(addressError);
-    return true;
-  } else {
-    show(addressError);
+    show(error);
   }
 }
 
@@ -85,15 +78,30 @@ function validateEmail(email) {
   return patternMatches;
 }
 
-// show hide error
+// show text on the page
 function show(value) {
   (value).classList.add("show");
   (value).classList.remove("hide");
 }
 
+// show hide text on the page
 function hide(value) {
   (value).classList.remove("show");
   (value).classList.add("hide");
 }
 
+// checks if function meets all the requirements, if true, shows text on the page.
+function checkForm() {
+  if (check(name, nameError) && validate(subject, subjectError, 10) && emailValidate(email, emailError) && validate(address, addressError, 25)) {
+    console.log("Validation OK");
+    show(ok);
+    return true;
+  } else {
+    console.log("Some fields doesnt meet the requirements");
+    hide(ok);
+    console.log();
+  }
+}
+
 form.addEventListener("submit", validateForm);
+form.addEventListener("submit", checkForm);
