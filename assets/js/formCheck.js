@@ -5,11 +5,11 @@ function formCheck() {
   // validateForm();
   if (nameCheck() && subjectCheck() && emailCheck() && addressCheck()) {
     console.log("Validation OK");
-    show();
+    show(ok);
     return true;
   } else {
     console.log("Some fields doesnt meet the requirements");
-    hide();
+    hide(ok);
     console.log();
   }
 }
@@ -17,12 +17,12 @@ function formCheck() {
 form.addEventListener("submit", formCheck);
 
 // show hide msg
-function show() {
-  ok.classList.add("show");
-  ok.classList.remove("hide");
+function show(value) {
+  (value).classList.add("show");
+  (value).classList.remove("hide");
 }
 
-function hide() {
-  ok.classList.remove("show");
-  ok.classList.add("hide");
+function hide(value) {
+  (value).classList.remove("show");
+  (value).classList.add("hide");
 }

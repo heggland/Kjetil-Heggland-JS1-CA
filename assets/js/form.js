@@ -23,13 +23,10 @@ function nameCheck() {
   //validate name
   const nameValue = name.value;
   if (checkExsist(nameValue)) {
-    nameError.classList.remove("block");
-    nameError.classList.add("hide");
-    // console.log("Name: " + nameValue);
+    hide(nameError);
     return true;
   } else {
-    nameError.classList.remove("hide");
-    nameError.classList.add("block");
+    show(nameError);
   }
 }
 
@@ -37,13 +34,10 @@ function subjectCheck() {
   //validate subject
   const subjectValue = subject.value;
   if (checkInputLength(subjectValue, 10)) {
-    subjectError.classList.remove("block");
-    subjectError.classList.add("hide");
-    // console.log("Subject: " + subjectValue);
+    hide(subjectError);
     return true;
   } else {
-    subjectError.classList.remove("hide");
-    subjectError.classList.add("block");
+    show(subjectError);
   }
 }
 
@@ -51,13 +45,10 @@ function emailCheck() {
   //validate email
   const emailValue = email.value;
   if (validateEmail(emailValue)) {
-    emailError.classList.remove("block");
-    emailError.classList.add("hide");
-    // console.log("Email: " + emailValue);
+    hide(emailError);
     return true;
   } else {
-    emailError.classList.remove("hide");
-    emailError.classList.add("block");
+    show(emailError);
   }
 }
 
@@ -65,14 +56,10 @@ function addressCheck() {
   //validate address
   const addressValue = address.value;
   if (checkInputLength(addressValue, 25)) {
-    addressError.classList.add("hide");
-    addressError.classList.remove("block");
-    // console.log("Address:" + addressValue);
+    hide(addressError);
     return true;
   } else {
-    addressError.classList.remove("hide");
-    addressError.classList.add("block");
-
+    show(addressError);
   }
 }
 
@@ -96,6 +83,17 @@ function validateEmail(email) {
   const regEx = /\S+@\S+\.\S+/;
   const patternMatches = regEx.test(email);
   return patternMatches;
+}
+
+// show hide error
+function show(value) {
+  (value).classList.add("show");
+  (value).classList.remove("hide");
+}
+
+function hide(value) {
+  (value).classList.remove("show");
+  (value).classList.add("hide");
 }
 
 form.addEventListener("submit", validateForm);
