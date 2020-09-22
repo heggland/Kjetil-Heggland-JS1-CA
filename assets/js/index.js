@@ -3,11 +3,17 @@
 const resultsContainer = document.querySelector(".row");
 
 const value = "/quotes/random";
-
 const url = "https://officeapi.dev/api/" + value;
 const proxy = "https://cors-anywhere.herokuapp.com/";
-
 const proxyurl = proxy + url;
+
+//declare variables for API
+let firstname = "";
+let lastname = "";
+let id = "";
+let content = "";
+let name = "";
+
 
 async function fetchOffice() {
   //get intel from API
@@ -19,19 +25,11 @@ async function fetchOffice() {
     resultsContainer.innerHTML = "";
     // console.log(result);
 
-    //declare variables for API
-    let firstname = "";
-    let lastname = "";
-    let id = "";
-    let content = "";
-    let name = "";
-
     //assign API intel to variables
     firstname = result.character.firstname;
     lastname = result.character.lastname;
     id = result.character._id;
     content = result.content;
-
     name = firstname + " " + lastname;
 
     createHtml();
@@ -49,7 +47,7 @@ fetchOffice();
 function createHtml(details) {
   resultsContainer.innerHTML += `
 
-  <a href="details.html?id=${id}" class="content">
+  <a href="details.html?id=${id}&name=${name}" class="content">
     <div class="col content">
     <h3>${name}</h3>
     <p> ${content}</p>

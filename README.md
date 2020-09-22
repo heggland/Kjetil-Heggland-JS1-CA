@@ -1,5 +1,8 @@
 # JavaScript 1 Course Assignment
 
+Level 1 is required. --> index.js, details.js, form.js.
+Level 2 is optional. --> formCheck.js
+
 Choosing appropriate variable and function names will form part of your assessment, as will proper and consistent formatting of your code.
 
 Instructions

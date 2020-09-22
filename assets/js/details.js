@@ -1,10 +1,16 @@
-//TODO: Set the title of the HTML page to be one of the property values, like name,title or another relevant property.
-
 const resultsContainerTitle = document.querySelector("title");
-const resultsContainer = document.querySelector(".row");
+resultsContainerTitle.innerHTML = "";
 const resultsContainerName = document.querySelector(".characterName");
+resultsContainerName.innerHTML = "";
+const resultsContainer = document.querySelector(".row");
+resultsContainer.innerHTML = "";
 
-
+//declare variables for API
+let firstname = "";
+let lastname = "";
+let id = "";
+let content = "";
+let name = "";
 
 // get the querystring
 const queryString = document.location.search;
@@ -12,13 +18,15 @@ const queryString = document.location.search;
 const params = new URLSearchParams(queryString);
 // get the id parameter from the querystrings
 const getId = params.get("id");
-// console.log(getId);
-const value = "/quotes";
+const getName = params.get("name");
+//console.log(getName);
 
+const value = "/quotes";
 const url = "https://officeapi.dev/api/" + value;
 const proxy = "https://cors-anywhere.herokuapp.com/";
-
 const proxyurl = proxy + url;
+
+
 
 async function fetchOffice() {
   //get intel from API
@@ -26,42 +34,28 @@ async function fetchOffice() {
     const response = await fetch(proxyurl)
     const json = await response.json();
     const result = json.data;
-
-    resultsContainer.innerHTML = "";
-    resultsContainerTitle.innerHTML = "";
-
     // console.log(json);
 
-    resultsContainer.innerHTML += ``;
-    resultsContainerName.innerHTML += `<h2>Here is more quotes from ${name}</h2>`;
+    resultsContainerName.innerHTML += `<h2>Here is more quotes from ${getName}</h2>`;
+    resultsContainerTitle.innerHTML += `${getName}`; // IDEA: dont send the name as a get parameter. TODO: Count names and then remove duplicate names?
 
-    resultsContainerTitle.innerHTML += `${name}`;
+
 
     for (let i = 0; i < result.length; i++) {
-
-    //declare variables for API
-      let firstname = "";
-      let lastname = "";
-      let id = "";
-      let content = "";
-      let name = "";
-
-      //assign API intel to variables
+      //declare variables from API
       firstname = result[i].character.firstname;
       lastname = result[i].character.lastname;
       id = result[i].character._id;
       content = result[i].content;
 
-      name = firstname + " " + lastname;
-
       // checks if ID = ID, then print out only those thats true
       if (getId == id) {
-
         createHtml();
       }
     }
+
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     resultsContainer.innerHTML = displayError();
   }
 }
