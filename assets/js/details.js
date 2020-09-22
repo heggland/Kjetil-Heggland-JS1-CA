@@ -10,7 +10,7 @@ let firstname = "";
 let lastname = "";
 let id = "";
 let content = "";
-let name = "";
+//let name = "";
 
 // get the querystring
 const queryString = document.location.search;
@@ -47,10 +47,16 @@ async function fetchOffice() {
       lastname = result[i].character.lastname;
       id = result[i].character._id;
       content = result[i].content;
+      //name = firstname + " " + lastname;
 
       // checks if ID = ID, then print out only those thats true
       if (getId == id) {
         createHtml();
+
+      //resultsContainerName.innerHTML += `<h2>Here is more quotes from ${name}</h2>`;
+      //resultsContainerTitle.innerHTML += `${getName}`;
+      //TODO: remove duplicates-
+
       }
     }
 
