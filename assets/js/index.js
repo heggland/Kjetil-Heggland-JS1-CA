@@ -19,7 +19,14 @@ async function fetchOffice() {
     resultsContainer.innerHTML = "";
     // console.log(result);
 
-    //declare variables from API
+    //declare variables for API
+    let firstname = "";
+    let lastname = "";
+    let id = "";
+    let content = "";
+    let name = "";
+
+    //assign API intel to variables
     firstname = result.character.firstname;
     lastname = result.character.lastname;
     id = result.character._id;
